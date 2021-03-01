@@ -1,4 +1,4 @@
-# Test_Automation_Project
+# About Project
 
 This is an automation project where i tried to create some test with Selenium Webdriver written with Java Language.
 
