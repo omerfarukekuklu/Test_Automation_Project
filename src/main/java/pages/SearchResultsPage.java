@@ -7,12 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.Random;
 
 public class SearchResultsPage {
     public static WebElement wantedPageLink(int wantedPageNo, WebDriver driver){
         String wantedPageString = Integer.toString(wantedPageNo);
         return driver.findElement(By.xpath("//*[@id='best-match-right']/div[5]/ul/li[" + wantedPageString + "]/a"));
-        //*[@id="best-match-right"]/div[4]/ul/li[3]/a
     }
 
     public static WebElement pageLinkControlElement(int wantedPageNo, WebDriver driver){
@@ -20,12 +20,14 @@ public class SearchResultsPage {
         return driver.findElement(By.xpath("//*[@id='best-match-right']/div[4]/ul/li[" + wantedPageString + "]/a"));
     }
 
-    public static WebElement productLinks(WebDriver driver){
+    public static WebElement productLink(WebDriver driver){
         System.out.println("Inside productLinks" + driver.getCurrentUrl());
-        //WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        //WebElement productLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class, 'product-link']")));
-        //return productLink;
-        //return driver.findElement(By.xpath("//*[@id='item-info-block-652682846']/p/img"));
-        return null;
+        List<WebElement> productLinks = driver.findElements(By.xpath("//li[contains(@id, 'product_id_')]"));
+        System.out.println("Number of products in page = " + productLinks.size());
+
+        Random random = new Random();
+        int randomInt = random.nextInt(productLinks.size());
+        System.out.println("Product number: " + randomInt);
+        return productLinks.get(randomInt);
     }
 }
